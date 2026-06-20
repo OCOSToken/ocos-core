@@ -1,0 +1,41 @@
+name: Contracts
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Show Version
+        run: forge --version
+
+      - name: Install Dependencies
+        run: |
+          forge install
+
+      - name: Build
+        run: forge build
+
+      - name: Run Tests
+        run: forge test -vvv
+
+      - name: Coverage
+        run: forge coverage
