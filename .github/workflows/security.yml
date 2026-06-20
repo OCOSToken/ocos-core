@@ -1,0 +1,37 @@
+name: Security Scan
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  slither:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Slither
+        run: |
+          pip install slither-analyzer
+
+      - name: Install Dependencies
+        run: forge install
+
+      - name: Build
+        run: forge build
+
+      - name: Run Slither
+        run: |
+          slither contracts \
+          --config-file slither.config.json
