@@ -1,0 +1,15 @@
+{
+  "filter_paths": [
+    "lib",
+    "test",
+    "script"
+  ],
+  "exclude_low": true,
+  "exclude_informational": false,
+  "exclude_optimization": false,
+  "solc_disable_warnings": false,
+  "detectors_to_exclude": [
+    "naming-convention",
+    "assembly"
+  ]
+}
